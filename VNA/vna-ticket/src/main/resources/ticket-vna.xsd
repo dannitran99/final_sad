@@ -1,0 +1,100 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="entity.ticket.vna.airplane.com"
+           targetNamespace="entity.ticket.vna.airplane.com" elementFormDefault="qualified">
+
+    <xs:element name="TicketDetailsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TicketDetailsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Ticket" type="tns:Ticket"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="AllTicketRequest">
+        <xs:complexType>
+            <xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="AllTicketResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ListTicket" type="tns:customList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:element name="OneWayTicketRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="date" type="xs:string"/>
+            	<xs:element name="from" type="xs:string"/>
+            	<xs:element name="to" type="xs:string"/>
+            	<xs:element name="adult" type="xs:string"/>
+            	<xs:element name="toddler" type="xs:string"/>
+            	<xs:element name="baby" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="OneWayTicketResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ListTicket" type="tns:customList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+	<xs:element name="TwoWayTicketRequest">
+        <xs:complexType>
+            <xs:sequence>
+            	<xs:element name="dateGo" type="xs:string"/>
+            	<xs:element name="dateReturn" type="xs:string"/>
+            	<xs:element name="from" type="xs:string"/>
+            	<xs:element name="to" type="xs:string"/>
+            	<xs:element name="adult" type="xs:string"/>
+            	<xs:element name="toddler" type="xs:string"/>
+            	<xs:element name="baby" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="TwoWayTicketResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="veDi" type="tns:customList"/>
+                <xs:element name="veVe" type="tns:customList"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Ticket">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="price" type="xs:int"/>
+            <xs:element name="flightFrom" type="xs:string"/>
+            <xs:element name="flightTo" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="date" type="xs:int"/>
+            <xs:element name="available" type="xs:int"/>
+            <xs:element name="classType" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+  
+	<xs:complexType name="customList">
+	  <xs:sequence minOccurs="0" maxOccurs="unbounded">
+	    <xs:element name="ticket" type="tns:Ticket" />
+	  </xs:sequence>
+	</xs:complexType>  
+ 
+	
+    
+</xs:schema>

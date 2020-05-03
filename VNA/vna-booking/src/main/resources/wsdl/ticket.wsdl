@@ -1,0 +1,180 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="entity.ticket.vna.airplane.com"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="entity.ticket.vna.airplane.com" targetNamespace="entity.ticket.vna.airplane.com">
+	<wsdl:types>
+		<xs:schema
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="entity.ticket.vna.airplane.com">
+			<xs:element name="TicketDetailsRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="id" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TicketDetailsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Ticket" type="tns:Ticket"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AllTicketRequest">
+				<xs:complexType>
+					<xs:sequence></xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AllTicketResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ListTicket" type="tns:customList"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OneWayTicketRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="date" type="xs:string"/>
+						<xs:element name="from" type="xs:string"/>
+						<xs:element name="to" type="xs:string"/>
+						<xs:element name="adult" type="xs:string"/>
+						<xs:element name="toddler" type="xs:string"/>
+						<xs:element name="baby" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OneWayTicketResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ListTicket" type="tns:customList"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TwoWayTicketRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dateGo" type="xs:string"/>
+						<xs:element name="dateReturn" type="xs:string"/>
+						<xs:element name="from" type="xs:string"/>
+						<xs:element name="to" type="xs:string"/>
+						<xs:element name="adult" type="xs:string"/>
+						<xs:element name="toddler" type="xs:string"/>
+						<xs:element name="baby" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TwoWayTicketResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="veDi" type="tns:customList"/>
+						<xs:element name="veVe" type="tns:customList"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:complexType name="Ticket">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int"/>
+					<xs:element name="price" type="xs:int"/>
+					<xs:element name="flightFrom" type="xs:string"/>
+					<xs:element name="flightTo" type="xs:string"/>
+					<xs:element name="type" type="xs:string"/>
+					<xs:element name="date" type="xs:int"/>
+					<xs:element name="available" type="xs:int"/>
+					<xs:element name="classType" type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="customList">
+				<xs:sequence maxOccurs="unbounded" minOccurs="0">
+					<xs:element name="ticket" type="tns:Ticket"/>
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="AllTicketResponse">
+		<wsdl:part element="tns:AllTicketResponse" name="AllTicketResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="AllTicketRequest">
+		<wsdl:part element="tns:AllTicketRequest" name="AllTicketRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="TicketDetailsResponse">
+		<wsdl:part element="tns:TicketDetailsResponse" name="TicketDetailsResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="TwoWayTicketResponse">
+		<wsdl:part element="tns:TwoWayTicketResponse" name="TwoWayTicketResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="OneWayTicketResponse">
+		<wsdl:part element="tns:OneWayTicketResponse" name="OneWayTicketResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="OneWayTicketRequest">
+		<wsdl:part element="tns:OneWayTicketRequest" name="OneWayTicketRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="TicketDetailsRequest">
+		<wsdl:part element="tns:TicketDetailsRequest" name="TicketDetailsRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="TwoWayTicketRequest">
+		<wsdl:part element="tns:TwoWayTicketRequest" name="TwoWayTicketRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="TicketDetailsPort">
+		<wsdl:operation name="AllTicket">
+			<wsdl:input message="tns:AllTicketRequest" name="AllTicketRequest"></wsdl:input>
+			<wsdl:output message="tns:AllTicketResponse" name="AllTicketResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TicketDetails">
+			<wsdl:input message="tns:TicketDetailsRequest" name="TicketDetailsRequest"></wsdl:input>
+			<wsdl:output message="tns:TicketDetailsResponse" name="TicketDetailsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TwoWayTicket">
+			<wsdl:input message="tns:TwoWayTicketRequest" name="TwoWayTicketRequest"></wsdl:input>
+			<wsdl:output message="tns:TwoWayTicketResponse" name="TwoWayTicketResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="OneWayTicket">
+			<wsdl:input message="tns:OneWayTicketRequest" name="OneWayTicketRequest"></wsdl:input>
+			<wsdl:output message="tns:OneWayTicketResponse" name="OneWayTicketResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="TicketDetailsPortSoap11" type="tns:TicketDetailsPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="AllTicket">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="AllTicketRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="AllTicketResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TicketDetails">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="TicketDetailsRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="TicketDetailsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TwoWayTicket">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="TwoWayTicketRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="TwoWayTicketResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="OneWayTicket">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="OneWayTicketRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="OneWayTicketResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="TicketDetailsPortService">
+		<wsdl:port binding="tns:TicketDetailsPortSoap11" name="TicketDetailsPortSoap11">
+			<soap:address location="http://localhost:8080/vna/tickets-details"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
